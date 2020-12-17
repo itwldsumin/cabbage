@@ -1,0 +1,50 @@
+{% extends "phenotype/layout.html" %}
+{% load bootstrap4 %}
+{% bootstrap_javascript %}
+{% block content %}
+ <style>
+table {
+    display:inline-block;
+    vertical-align:top;
+    padding-right: 10px;
+    height:770px;
+    text-align: center;
+    margin: 5px;
+    border-right: solid #aaaaaa 3px;
+  }
+  td {
+    padding:10px 10px 5px 10px;
+  }
+  a{
+    color:black;
+  }
+  a:hover{
+    color:black;
+  }
+</style> 
+
+<div class="container" > 
+<div class="page_nam mb-5 pt-5" id="btn_b">
+Phenotype + Genotype
+<button id="btn1" onclick="location.href='/'" class="ml-3">
+   <i class="fa fa-reply mr-2" aria-hidden="true"></i>Home</button >
+</div>
+{% for table in genotype%}
+<table>
+    {{ table.name  | safe }}
+    {%for row in table.qs%}
+        <tr>
+        {%for post in row%}
+        <td>  
+        <a href="/genotype/{{post.pk}}">
+        {{post.brapa_id}}
+        </a>
+        </td>
+        {%endfor%}
+        </tr>
+    {%endfor%}
+</table>
+{%endfor%}
+
+</div>
+{% endblock %}

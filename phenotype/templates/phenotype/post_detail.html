@@ -1,0 +1,200 @@
+{% extends "phenotype/layout.html" %}
+{% load bootstrap4 %}
+{% bootstrap_javascript %}
+{% load static %}
+{% bootstrap_css %}
+{% block content %}
+
+<style>
+  table {
+    width: 100%;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+    table-layout: fixed;"
+  }
+  th, td {
+    border: 1px solid #444444;
+    padding: 1px;
+    
+  }
+   .imgs {
+    display: block;
+    margin: 0px auto;
+    width:280px; 
+    height:300px; 
+  }
+   #popup_hover{
+   position: fixed;
+   left: 200px;
+   top: 200px;
+   width: 400px;
+   border-radius: 10px;
+   background-color: white;
+   padding:10px;
+   -webkit-box-shadow: 0px 3px 15px -5px rgba(0,0,0,0.85);
+  -moz-box-shadow: 0px 3px 15px -5px rgba(0,0,0,0.85);
+  box-shadow: 0px 3px 15px -5px rgba(0,0,0,0.85);
+ }
+</style>
+<div class="container ">
+<div class="page_nam pt-5">Phenotype Information of Cabbage Database</div>
+
+
+{% if phenotypedata %}
+{% for pheno in phenotypedata.all%}
+<div class = "row m-5">
+  <div class="col-6">
+    <p style="text-align: center">Top View</p>
+      {% if pheno.img_path_u %} 
+      <img class="imgs" src= "../../../static/media/{{ pheno.img_path_u }}" alt="">
+      {% else  %} 
+      <img class="imgs" src= "{% static 'img/noimg.png' %}"  alt=""> 
+      {% endif %}
+  </div>
+  <div class="col-6">
+    <p style="text-align: center">Front View</p>
+    {% if pheno.img_path %} 
+    <img class="imgs" src= "../../../static/media/{{ pheno.img_path }}"  alt="">
+    {% else  %} 
+    <img class="imgs" src= "{% static 'img/noimg.png' %}" alt=""> 
+    {% endif %}
+  </div>
+</div>
+
+{% if cabbageinfo %}
+{% for cab in cabbageinfo.all%}
+<div id="btn_b">
+  <h3>{{cab.brapa_id}}</h3>
+  <p style="color:#8C8C8C; font-size: 23px;"> {{cab.method_classfication}} 
+ <button id="btn1" onclick="window.open('/info', 'CLIENT_WINDOW', 'toolbar=yes,menubar=yes,width=1000.height=800')" style="float : right;">
+  <i class="fa fa-file-o mr-2" aria-hidden="true"></i> terms</button>
+ </p>
+</div>
+{% endfor %}
+{% endif %}
+
+<table>
+<tr style="text-align: center; font-weight: bolder;">
+   <td class='td_hover'> PH </td>
+   <td class='td_hover'> PW </td>
+   <td class='td_hover'> NL </td>
+   <td class='td_hover'> LL </td>
+   <td class='td_hover'> LW </td>
+   <td class='td_hover'> PetioleL </td>
+   <td class='td_hover'> PetioleW</td>
+   <td class='td_hover'> PetioleT</td>
+   <td class='td_hover'> PetioleC</td>
+   <td class='td_hover'> PetioleS</td>
+   <td class='td_hover'> PetioleVC</td>
+   <td class='td_hover'> HW </td>
+   <td class='td_hover'> HH </td>
+    </tr>
+
+<tr style="text-align: right;">
+   <td> {{pheno.plant_height}}</td>
+   <td> {{pheno.plant_weigth}}</td>
+   <td> {{pheno.leaves}}</td>
+   <td> {{pheno.leaf_length}}</td>
+   <td> {{pheno.leaf_width}}</td>
+   <td> {{pheno.petiole_length}}</td>
+   <td>{{pheno.petiole_width}}</td>
+   <td>{{pheno.petiole_thickness}}</td>
+   <td>{{pheno.petiole_color}}</td>
+   <td>{{pheno.petiole_section}}</td>
+   <td> {{pheno.petiole_vessel_color}}</td>
+   <td> {{pheno.head_weight}}</td>
+   <td> {{pheno.heading_habit}}</td>
+ </tr>
+  </table>
+ 
+<table style="margin-top:20px;" >
+<tr style="text-align: center; font-weight: bolder; ">
+   <td class='td_hover'> HS </td>
+   <td class='td_hover'> HF </td>
+   <td class='td_hover'> COH </td>
+   <td class='td_hover'> HSO </td>
+   <td class='td_hover'> HL </td>
+   <td class='td_hover'> HD </td>
+   <td class='td_hover'> HD_HL </td>
+   <td class='td_hover'> HIL </td>
+   <td class='td_hover'> SL </td>
+   <td class='td_hover'> SW </td>
+   <td class='td_hover'> HC </td>
+   <td class='td_hover'> Trichome </td>
+   <td class='td_hover'> FT </td>
+ </tr>
+
+<tr style="text-align: right;">
+   <td> {{pheno.head_shape}}</td>
+   <td> {{pheno.head_forming_leaf_overlap}}</td>
+   <td> {{pheno.color_outer_head_leaves }}</td>
+   <td> {{pheno.head_solidity }}</td>
+   <td> {{pheno.head_length}}</td>
+   <td> {{pheno.head_diameter }}</td>
+   <td> {{pheno.head_diameter_length }}</td>
+   <td> {{pheno.head_inner_leaves }}</td>
+   <td> {{pheno.stem_length }}</td>
+   <td> {{pheno.stem_width }}</td>
+   <td> {{pheno.head_color }}</td>
+   <td> {{pheno.trichome }}</td>
+   <td> {{pheno.flowering_time }}</td>
+    </tr>
+    </table>
+{% endfor %}
+{% endif %}
+
+<div align="right" class="back" id="btn_b" > 
+ <button id="btn1" onclick="location.href='/post_list'">
+   <i class="fa fa-reply mr-2" aria-hidden="true"></i>back to list</button >
+   </div>
+</div>
+
+<div id=popup_hover></div>
+<script>
+    var dict = {"PH":["Plant height  ","식물체 자체의 키<br>","cm "],
+                "PW":["Plant weight ","식물체 자체의 무게<br>","g "],
+                "NL":["Number of Leaves (Outer)  ","결구를 이루지 않는 잎의 수 (배추 외엽의 수)<br>","number "],
+                "LL":["Leaf length  ","잎 전체의 길이<br>","cm "],
+                "LW":["Leaf width  ","잎 전체의 폭<br>","cm "],
+                "PetioleL":["Petiole length  ","중륵의 길이<br>","cm "],
+                "PetioleW":["Petiole width   ","중륵의 폭<br>","cm "],
+                "PetioleT":["Petiole thickness   ","중륵의 두께<br>","mm "],
+                "PetioleC":["Petiole color ","중륵의 색 <br><div style='font-size:12px'>Score as: 1, light green; 2, green; 3, white; 4, purple<br></div>","scaled "],
+                "PetioleS":["Petiole section    ","중륵의 절단면의 모양 <br><div style='font-size:12px'>Score as: 3, round; 5, semi-round; 7, flat<br></div>","scaled "],
+                "PetioleVC":["Petiole vessel color   ","엽맥의 색<br>","scaled"],
+                "HW":["Head weight   ","결구의 무게<br>","g "],
+                "HH":["Heading habit   ","결구 양상 <br><div style='font-size:12px'>Score as: 0, 불결구 5, 반결구; 7, 결구<br></div>","scaled "],
+                "HS":["Head shape  ","결구의 형태 <br><div style='font-size:12px'>Score as: 1, triangular(삼각형); 2, ovate(계란형); 3, obovate(도란형); 4, elliptical(타원형); 5, spherical(구형)l; 6, cylindrical(직통형); 7, transverse elliptical(장타원형); 8, others (기타)<br></div>","scaled"],
+                "HF":["Head forming leaf overlap ","결구를 이루는 잎이 말리는 양상 <br><div style='font-size:12px'>Score as: 1, leaves curled outwards; 2, erect; 3, curled inwards; 4, slight overlap; 5, strong overlap<br></div>","scaled"],
+                "COH":["Color of outer head leaves  ","s 결구 외곽을 이루는 잎의 색 <br><div style='font-size:12px'>Score as: 1, yellow–green; 2, pale green; 3, green; 4, dark green; 5, red–green; 6, red or purple<br></div>","scaled "],
+                "HSO":["Head solidity","결구를 눌렀을 때 단단한 정도 <br><div style='font-size:12px'>Score as: 3, low (soft, loose); 5, intermediate; 7, high (firm, hard)<br></div>","scaled"],
+                "HL":[" Head Length" ,"결구의 높이<br>"  ,"cm"],
+                "HD":["Head diameter   ","배추의 결구를 세로로 자르고 측정한 직경<br>","cm "],
+                "HD_HL":["Head diamter/length  ","결구의 높이 대비 직경의 비율<br>","% "],
+                "HIL":["Head Inner Leaves ","배추 결구를 이루는 잎의 수를 센 것 (배추 내엽의 수)<br>","number "],
+                "SL":["Stem length ","줄기의 길이<br>","cm "],
+                "SW":["Stem width ","줄기의 폭<br> ","cm "],
+                "HC":["Head color ","결구 내엽의 색 <br><div style='font-size:12px'>Score as: 1, white; 2, yellow; 3, green<br></div>","scaled "],
+                "Trichome":["Trichome ","생육 10주차 개체의 외엽 사진 촬영 후 trichome 유무 판정 (presence/absence) (Binary data)<br>","scaled "],
+                "FT":["Flowering time ","2014년 2월 24일 파종 이후 4주 저온실에서 춘화처리, 4월 24일 정식 이후 정단에서 노란 꽃이 관찰된 날짜를 기록 후 파종일 이후 소요일수 계산 (계통별 5반복의 평균)<br>","Day "]};
+      $('#popup_hover').css('display','none');
+    $( '.td_hover' ).hover( function(){
+      var key = $.trim($(this).html());
+      var temp = dict[key];
+      var row_string  = "<h5 style='font-weight:bold;'>"+key+" ("+$.trim(temp[0])+")</h5>"+$.trim(temp[1])+"단위: "+$.trim(temp[2]);
+      $('#popup_hover').html(row_string);
+      $('#popup_hover').css('display','block');
+      $('#popup_hover').css('top',$(this).offset()['top']-$('#popup_hover').height()-25-$(document).scrollTop() );
+      $('#popup_hover').css('left',$(this).offset()['left']);
+      
+    }, function(){
+      $('#popup_hover').css('display','none');
+    } )
+</script>
+{% endblock %}
+
+
+
+
+
+

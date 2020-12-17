@@ -1,0 +1,196 @@
+{% extends "phenotype/layout.html" %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load static %}
+{% block content %}
+ <style>
+  table {
+    width: 100%;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #444444;
+    padding: 5px;
+  }
+  </style>
+  <div class="container" style="padding-top:20px"> 
+      <table >
+
+      <tr style="text-align: center; font-weight: bolder; ">
+         <th> Abbreviation </th>
+         <th> Trait </th>
+         <th> Detail </th>
+         <th> Unit </th>
+      </tr>
+      <tr style="text-align: center;">
+         <td> PH </td>
+         <td> Plant height  </td>
+         <td>식물체 자체의 키  </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> PW </td>
+         <td> Plant weight </td>
+         <td>식물체 자체의 무게 </td>
+         <td>g </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> NL </td>
+         <td> Number of Leaves (Outer)  </td>
+         <td>결구를 이루지 않는 잎의 수 (배추 외엽의 수) </td>
+         <td>number </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> LL</td>
+         <td> Leaf length  </td>
+         <td>잎 전체의 길이  </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> LW   </td>
+         <td>Leaf width  </td>
+         <td>잎 전체의 폭  </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> PetioleL</td>
+         <td> Petiole length  </td>
+         <td>중륵의 길이   </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> PetioleW</td>
+         <td> Petiole width   </td>
+         <td>중륵의 폭   </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> PetioleT </td>
+         <td> Petiole thickness   </td>
+         <td>중륵의 두께  </td>
+         <td>mm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> PetioleC </td>
+         <td> Petiole color </td>
+         <td>중륵의 색
+      Score as: 1, light green; 2, green; 3, white; 4, purple  </td>
+         <td>scaled </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> PetioleS  </td>
+         <td>Petiole section    </td>
+         <td>중륵의 절단면의 모양
+      Score as: 3, round; 5, semi-round; 7, flat </td>
+         <td>scaled </td>
+      </tr>
+      <tr style="text-align: center;">
+         <td>PetioleVC  </td>
+         <td> Petiole vessel color   </td>
+         <td>엽맥의 색  </td>
+         <td>scaled</td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> HW</td>
+         <td> Head weight   </td>
+         <td>결구의 무게 </td>
+         <td>g </td>
+      </tr>
+      <tr style="text-align: center;">
+         <td>HH </td>
+         <td> Heading habit   </td>
+         <td>결구 양상
+      Score as: 0, 불결구 5, 반결구; 7, 결구   </td>
+         <td>scaled </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> HS </td>
+         <td> Head shape  </td>
+         <td>결구의 형태
+      Score as: 1, triangular(삼각형); 2, ovate(계란형); 3, obovate(도란형); 4, elliptical(타원형); 5, spherical(구형)l; 6, cylindrical(직통형); 7, transverse elliptical(
+      장타원형); 8, others (기타) </td>
+         <td>scaled</td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> HF </td>
+         <td> Head forming leaf overlap </td>
+         <td>결구를 이루는 잎이 말리는 양상
+      Score as: 1, leaves curled outwards; 2, erect; 3, curled inwards; 4, slight overlap; 5, strong overlap </td>
+         <td>scaled</td>
+      </tr>
+      <tr style="text-align: center;">
+         <td>COH  </td>
+         <td> Color of outer head leaves  </td>
+         <td>s 결구 외곽을 이루는 잎의 색
+      Score as: 1, yellow–green; 2, pale green; 3, green; 4, dark green; 5, red–green; 6, red or purple </td>
+         <td>scaled </td>
+      </tr>
+      <tr style="text-align: center;">
+         <td> HSO </td>
+         <td>Head solidity</td>
+         <td>결구를 눌렀을 때 단단한 정도
+      Score as: 3, low (soft, loose); 5, intermediate; 7, high (firm, hard)  </td>
+         <td>scaled </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td>HL</td>
+         <td> Head Length </td>
+         <td>결구의 높이  </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td>HD  </td>
+         <td> Head diameter   </td>
+         <td>배추의 결구를 세로로 자르고 측정한 직경  </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td>HD_HL </td>
+         <td> Head diamter/length  </td>
+         <td>결구의 높이 대비 직경의 비율  </td>
+         <td>% </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> HIL </td>
+         <td>Head Inner Leaves </td>
+         <td>배추 결구를 이루는 잎의 수를 센 것 (배추 내엽의 수)  </td>
+         <td>number </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td>SL  </td>
+         <td>Stem length </td>
+         <td>줄기의 길이  </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> SW </td>
+         <td>Stem width </td>
+         <td>줄기의 폭 </td>
+         <td>cm </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td>HC </td>
+         <td>Head color </td>
+         <td>결구 내엽의 색
+      Score as: 1, white; 2, yellow; 3, green  </td>
+         <td>scaled </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> Trichome </td>
+         <td>Trichome </td>
+         <td>생육 10주차 개체의 외엽 사진 촬영 후 trichome 유무 판정 (presence/absence) (Binary data) </td>
+         <td>scaled </td>
+      </tr>
+      <tr style="text-align: center; ">
+         <td> FT </td>
+         <td>Flowering time </td>
+         <td>2014년 2월 24일 파종 이후 4주 저온실에서 춘화처리, 4월 24일 정식 이후 정단에서 노란 꽃이 관찰된 날짜를 기록 후 파종일 이후 소요일수 계산 (계통별
+      5반복의 평균)</td>
+         <td>Day </td>
+      </tr>
+      </table>
+   </div>
+
+{% endblock %}             

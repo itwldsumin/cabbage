@@ -1,0 +1,51 @@
+{% extends "phenotype/layout.html" %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load static %}
+{% block content %}
+
+<style>
+.title{
+    padding-left: 50px; 
+    padding-top: 60px; 
+    margin: auto; 
+    width: 40%; 
+    text-align: center;
+}
+.choice{
+border: 10px solid #dddddd; 
+padding-top: 80px; 
+padding-bottom: 80px; 
+}
+
+</style>
+
+         {% comment %}  <div class="row title">
+          <h3 >Cabbage’s Phenotype and Genotype Database </h3>
+          </div>
+{% endcomment %}
+       
+        <main role="main" >
+            <div class="row col-12 " style=" text-align: center; margin-top: 380px; margin-bottom: 390px; ">
+             <div class="col-md-3 ">
+                </div>
+                <div class="col-md-3 ">
+                <div  class="choice" onclick = "location.href = '/post_list'">
+                    <h4 style="user-select: none;"> phenotype </h4>
+                </div>
+                </div>
+                <div class="col-md-3 ">
+                <div  class="choice" onclick = "location.href = '../genotype'">         
+                    <h4 style="user-select: none;"> phenotype + genotype</h4>
+                </div>
+                </div>
+                <div class="col-md-3 ">
+                </div>
+            </div> 
+        </main>   
+        {% endblock %}             
+
+
+
+  

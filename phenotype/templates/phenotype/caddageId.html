@@ -1,0 +1,46 @@
+{% extends "phenotype/layout.html" %}
+{% load bootstrap4 %}
+{% bootstrap_javascript %}
+{% block content %}
+ <style>
+table {
+    display:inline-block;
+    vertical-align:top;
+    padding-right: 10px;
+    height:750px;
+    text-align: center;
+    margin: 5px;
+    border-right: solid #aaaaaa 3px;
+  }
+  td {
+    padding:10px 10px 5px 10px;
+  }
+.list{
+width:64%;
+margin-left: auto;
+margin-right: auto;
+padding-left: 110px;
+  }
+</style> 
+
+<div class="container" > 
+{% for table in cabbage%}
+<table>
+    {{ table.name  | safe }}
+    {%for row in table.qs%}
+        <tr>
+        {%for post in row%}
+        <td>  
+        <a href="/accession/{{post.pk}}" style=" color:black; ">
+        {{post.brapa_id}}
+        </a>
+        </td>
+        
+        {%endfor%}
+        </tr>
+    {%endfor%}
+</table>
+{%endfor%}
+<div class="mt-5"align="right"> <a href="/"> 목록으로 돌아가기</a></div>
+</div>
+{% endblock %}

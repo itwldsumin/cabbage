@@ -1,0 +1,78 @@
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<html>
+    <head>
+        <title>Cabbage DB</title>
+        {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}"> {% endcomment %}
+    </head>
+    <style>
+    .name{
+        width:100%;
+        text-align: center;
+    }
+    #btn1{
+        border-radius: 5px;
+        margin-right:-4px;
+        font-size: 16px;
+    }
+    #btn_b button{
+        border: 2px solid #8C8C8C;
+        background-color: white;
+        color:#8C8C8C;
+        padding:4px;
+     }
+    #btn_b button:hover{ 
+        color:white;
+        background-color: #8C8C8C;
+    }
+    .back{
+        color:black;
+        margin-top: 18px;
+    }
+    .page_nam{
+        font-size: 26px;
+        font-weight: 720;
+    }
+    .nav{
+        height: 65px;
+    }
+
+
+    </style>
+
+    <body>
+        <header>
+            <nav class="nav navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
+            
+                <a class="navbar-brand name" style="font-size: 30px; font-weight: 700;" href="/">Cabbage’s Phenotype and Genotype Database</a>
+            </nav>
+        </header>
+
+        <main role="main">
+
+            <div style="margin-top:65px;" >
+                <div>
+                    {% block content %}
+                    {% endblock %}            
+                </div>
+
+            </div>
+        </main>                
+
+       
+<footer class="bd-footer">
+            <div class="container" style="margin-top:120px;">
+            
+                 <p><a href="https://www.kribb.re.kr/" target="_blank">
+                 <img src="{% static 'img/logo1.jpg' %}"  style=" width:280px; height:70px;"> </a>
+                 <a href="http://www.euclidsoft.co.kr" target="_blank"><img src="{% static 'img/logo2.jpg' %}" style="float : right; width:280px; height:50px; padding-top:10px"></a>
+                 </p>
+            </div>
+        </footer>
+    </body>
+</html>
